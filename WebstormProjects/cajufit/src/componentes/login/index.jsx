@@ -37,13 +37,10 @@ function LoginForm({ setAuthToken }) {
         try {
             setIsSubmitting(true);
 
-            // Alterando a URL para a URL de login do seu backend
-            const response = await axios.post(
-                'http://127.0.0.1:8000/api/usuarios/',  // URL correta para o login
-                {
-                    username: formData.username,
-                    password: formData.password,
-                },
+            // Etapa 1: Registro do usuário
+            const registerResponse = await axios.post(
+                'http://127.0.0.1:8000/api/usuarios/',
+                { ...formData },
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -51,44 +48,45 @@ function LoginForm({ setAuthToken }) {
                 }
             );
 
-            console.log(response.data); // Verifique a resposta da API
+            if (registerResponse.status === 201) {
+                // Registro bem-sucedido, agora faça o login
 
-            // Supondo que a API retorne um token de autenticação
-            if (response.data && response.data.token) {
-                const token = response.data.token;
-                setSuccessMessage('Login bem-sucedido!');
-
-                // Armazena o token no localStorage
-                localStorage.setItem('authToken', token);
-
-                // Configura o axios para usar o token em requisições futuras
-                const api = axios.create({
-                    baseURL: 'http://127.0.0.1:8000/api/usuarios',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
+                const loginResponse = await axios.post(
+                    'http://127.0.0.1:8000/login/',
+                    {
+                        username: formData.username,
+                        password: formData.password,
                     },
-                });
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    }
+                );
 
-                // Realiza a requisição GET para buscar o usuário (ou outras informações)
-                const userResponse = await api.get('');
-                console.log('Resposta do GET:', userResponse.data);
-
-                setAuthToken(token);
-                navigate("/");  // Redireciona para a home após o login
-
+                if (loginResponse.data && loginResponse.data.token) {
+                    const token = loginResponse.data.token;
+                    setSuccessMessage('Login bem-sucedido!');
+                    localStorage.setItem('authToken', token);
+                    setAuthToken(token);
+                    navigate('/'); // Redireciona para a home
+                } else {
+                    setNonFieldErrors('Token de autenticação não recebido. Verifique a API.');
+                }
             } else {
-                setNonFieldErrors('Token de autenticação não recebido. Verifique a API.');
+                setNonFieldErrors('Falha no registro. Verifique os dados enviados.');
             }
-
         } catch (error) {
             if (error.response) {
                 setErrors(error.response.data.errors || {});
-                setNonFieldErrors(error.response.data.non_field_errors || 'Erro desconhecido.');
-            } else if (error.request) {
-                setNonFieldErrors('Servidor não respondeu. Verifique sua conexão ou tente novamente mais tarde.');
+                setNonFieldErrors(
+                    error.response.data.non_field_errors || 'Erro desconhecido.'
+                );
             } else {
-                navigate('/');  // Em caso de erro inesperado
-                window.location.reload();
+                setNonFieldErrors(
+                    navigate('/'),
+                    window.location.reload(false),
+                );
             }
         } finally {
             setIsSubmitting(false);
