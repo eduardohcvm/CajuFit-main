@@ -34,11 +34,16 @@ function Header() {
                 </h1>
             </Link>
 
-
             {/* Menu de navegação à direita */}
             <nav className="space-x-4">
                 {isAuthenticated ? (
                     <>
+                        {/* Botão "Meus Treinos" visível apenas para usuários logados */}
+                        <Link
+                            to="/meus_treinos"
+                            className="inline-flex items-center px-4 py-2 bg-white text-[#333333] rounded-lg hover:bg-gray-600 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500">
+                            <span className="mr-2">Meus Treinos</span>
+                        </Link>
 
                         {/* Quando o usuário estiver logado, exibir o botão de perfil e o botão de logout */}
                         <Link

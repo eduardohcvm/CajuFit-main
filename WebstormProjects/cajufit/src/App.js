@@ -10,8 +10,7 @@ import RegisterForm from "./componentes/register";
 import Footer from "./componentes/footer/footer";
 import ProductCarousel from "./componentes/products";
 import Profile from "./componentes/profile";
-
-import ContactForm from "./componentes/form_sendInfo";
+import MeusTreinos from './componentes/meus_treinos';
 import TambauUnit from "./componentes/unidade_tambau";
 import MangabeiraUnit from "./componentes/unidade_mangabeira";
 import AmericoUnit from "./componentes/unidade_americo";
@@ -29,11 +28,10 @@ function App() {
                     <Route path="/register" element={<RegisterForm />} />           
                     <Route path="/products" element={<ProductCarousel />} />
                     <Route path="/profile" element={<Profile />} />
-
+                    <Route path="/meus_treinos" element={<MeusTreinos />} />
                     <Route path="/unidade_tambau" element={<TambauUnit />} />
                     <Route path="/unidade_mangabeira" element={<MangabeiraUnit />} />
-                    <Route path="/unidade_americo" element={<AmericoUnit />} />              
-                    <Route path="sendForm" element={<ContactForm/>}/>                   
+                    <Route path="/unidade_americo" element={<AmericoUnit />} />                         
                 </Routes>
                 <Footer/>
             </Router>

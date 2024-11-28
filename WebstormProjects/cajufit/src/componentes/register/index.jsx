@@ -6,7 +6,6 @@ function RegisterForm() {
     const [formData, setFormData] = useState({
         username: '',
         password: '',
-        category: 'id',
     });
 
     const [errors, setErrors] = useState({});
@@ -23,7 +22,6 @@ function RegisterForm() {
         const newErrors = {};
         if (!formData.username) newErrors.username = 'O campo de usuário é obrigatório.';
         if (!formData.password) newErrors.password = 'O campo de senha é obrigatório.';
-        if (!formData.category) newErrors.category = 'Selecione uma categoria.';
         return newErrors;
     };
 
@@ -43,10 +41,9 @@ function RegisterForm() {
 
         setIsSubmitting(true);
         try {
-            const response = await axios.post('https://1e70-45-228-146-95.ngrok-free.app/', {
+            const response = await axios.post('http://localhost:8000/api/register/', {
                 username: formData.username,
                 password: formData.password,
-                category: categoryList
             });
             setSuccessMessage('Registro realizado com sucesso!');
             console.log('Registro bem-sucedido:', response.data);
@@ -89,27 +86,6 @@ function RegisterForm() {
                                     />
                                     {errors.username && (
                                         <p className="text-red-500 text-sm mt-2">{errors.username}</p>
-                                    )}
-                                </div>
-                                <div className="mb-4">
-                                    <label htmlFor="category" className="block text-sm font-bold text-gray-700">
-                                        Categoria
-                                    </label>
-                                    <select
-                                        name="category"
-                                        id="category"
-                                        value={formData.category}
-                                        onChange={handleChange}
-                                        className={`${styles.customScroll} mt-2 w-full block border ${errors.category ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:ring focus:ring-blue-500 focus:border-blue-500 p-2`}
-                                    >
-                                        <option value="1">Professor-Lab01</option>
-                                        <option value="2">Professor-Lab02</option>
-                                        <option value="3">Professor-Lab03</option>
-                                        <option value="4">Reitor</option>
-                                        <option value="5">Aluno</option>
-                                    </select>
-                                    {errors.category && (
-                                        <p className="text-red-500 text-sm mt-2">{errors.category}</p>
                                     )}
                                 </div>
                                 <div className="mb-4">

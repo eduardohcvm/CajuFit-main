@@ -35,7 +35,7 @@ const ProductCarousel = () => {
     const navigate = useNavigate();  // Hook do React Router para navegação
 
     const handleLearnMoreClick = () => {
-        navigate('/sendForm');  // Redireciona para a rota /formulario
+        navigate('/register');  // Redireciona para a rota /formulario
     };
 
     return (

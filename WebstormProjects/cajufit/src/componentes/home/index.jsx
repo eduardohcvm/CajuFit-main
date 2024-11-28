@@ -49,7 +49,7 @@ const Home = () => {
           </p>
         </div>
         <a href="#plans">
-          <button className="mt-6 px-8 py-3 bg-[#FF8600] text-gray-900 rounded-full shadow-lg hover:bg-[#96c049] transition-transform duration-300 transform hover:scale-105">
+          <button className="mt-6 px-8 py-3 bg-[#FF8600] text-[#FFFFFF] font-bold rounded-full shadow-lg hover:bg-[#96c049] transition-transform duration-300 transform hover:scale-105">
             Ver Planos
           </button>
         </a>
@@ -176,8 +176,8 @@ const Home = () => {
               </p>
               
               <div className="mt-auto w-full">
-                <Link to="/sendForm">
-                  <button className="px-8 py-3 bg-[#FF8600] text-gray-900 rounded-full hover:bg-[#96c049] transition duration-300 transform hover:scale-105">
+                <Link to="/register">
+                  <button className="px-8 py-3 bg-[#FF8600] text-[#FFFFFF] font-bold rounded-full hover:bg-[#96c049] transition duration-300 transform hover:scale-105">
                     Escolher este plano
                   </button>
                 </Link>
@@ -216,8 +216,8 @@ const Home = () => {
                 Treino em todas as unidades CajuFit
               </p>
               <div className="mt-auto w-full">
-                <Link to="/sendForm">
-                  <button className="px-8 py-3 bg-[#FF8600] text-gray-900 rounded-full hover:bg-[#96c049] transition duration-300 transform hover:scale-105">
+                <Link to="/register">
+                  <button className="px-8 py-3 bg-[#FF8600] text-[#FFFFFF] font-bold rounded-full hover:bg-[#96c049] transition duration-300 transform hover:scale-105">
                     Escolher este plano
                   </button>
                 </Link>
@@ -268,8 +268,8 @@ const Home = () => {
                 Taxa zero
               </p>
               <div className="mt-auto w-full">
-                <Link to="/sendForm">
-                  <button className="px-8 py-3 bg-[#FF8600] text-gray-900 rounded-full hover:bg-[#96c049] transition duration-300 transform hover:scale-105">
+                <Link to="/register">
+                  <button className="px-8 py-3 bg-[#FF8600] text-[#FFFFFF] font-bold rounded-full hover:bg-[#96c049] transition duration-300 transform hover:scale-105">
                     Escolher este plano
                   </button>
                 </Link>
