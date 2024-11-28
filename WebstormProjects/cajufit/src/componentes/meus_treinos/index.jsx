@@ -66,7 +66,7 @@ const MeusTreinos = () => {
             >
               {/* Exibe o nome do aluno associado ao treino */}
               <h2 className="text-lg font-bold text-gray-800">
-                {treinoexercicio.treino.aluno} - {treinoexercicio.treino.data}
+                {treinoexercicio.treino.aluno.nome}
               </h2>
               {/* Exibe o nome do exercício associado */}
               <p className="text-2xl">
